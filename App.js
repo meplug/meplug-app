@@ -1,29 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { useFonts } from 'expo-font';
+
+import { StyleSheet, Text, View } from "react-native";
+import { useFonts } from "expo-font";
+import Routes from "./navigation/Routes";
 
 export default function App() {
-
   const [loaded] = useFonts({
-    Regular: require('./assets/fonts/Prompt-Regular.ttf'),
+    Regular: require("./assets/fonts/Prompt-Regular.ttf"),
   });
-  
+
   if (!loaded) {
     return null;
   }
-  return (
-    <View style={styles.container}>
-      <Text style={{fontFamily: "Regular"}}>Mansea</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  return <Routes />;
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
