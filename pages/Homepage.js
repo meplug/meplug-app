@@ -8,7 +8,7 @@ export default function Homepage({navigation}) {
       <Text style={{ fontFamily: "Regular" }}>Mansea</Text>
       <StatusBar style="auto" />
       <TouchableOpacity onPress={()=>navigation.navigate("Usage")}>
-        <Text>Hi</Text>
+        <Text>Go To Usage</Text>
       </TouchableOpacity>
     </View>
   );

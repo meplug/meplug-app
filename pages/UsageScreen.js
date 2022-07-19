@@ -5,9 +5,6 @@ export default function UsageScreen({navigation}) {
   return (
     <View>
       <Text>UsageScreen</Text>
-      <TouchableOpacity onPress={()=>navigation.navigate("Homepage")}>
-        <Text>Back</Text>
-      </TouchableOpacity>
     </View>
   )
 }
