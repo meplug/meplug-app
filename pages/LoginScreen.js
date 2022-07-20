@@ -7,10 +7,28 @@ import {
 } from "react-native";
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { authlogin } from "../redux/users/UserSlice";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen({navigation}) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+
+  const handleLogin = async () => {
+    dispatch(authlogin({email: email, password: password})).unwrap()
+    // .then(async () => {
+    //   try {
+    //     const token = await AsyncStorage.getItem('token');
+    //     if (token) {
+    //       navigation.navigate('Homepage');
+    //     } else {
+    //       console.log('error');
+    //     }
+    //   } catch (error) {console.log(error)}
+    // });
+  };
 
   return (
     //Login Screen Design Template
@@ -29,8 +47,9 @@ export default function LoginScreen({navigation}) {
         value={password}
         onChangeText={(text) => setPassword(text)}
         style={styles.container}
+        secureTextEntry={true}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleLogin}>
         <Text>Login</Text>
       </TouchableOpacity>
 

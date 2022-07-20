@@ -1,15 +1,15 @@
 import MocApi from './MocApi';
 
 const login = data => {
-  return MocApi.post('/auth/login', data);
+  return MocApi.post('/auths/login', data);
 };
 
 const register = data => {
-  return MocApi.post('/auth/register', data);
+  return MocApi.post('/auths/register', data);
 };
 
 const logout = data => {
-  return MocApi.post('/auth/logout');
+  return MocApi.post('/auths/logout');
 };
 
 const getUser = id => {

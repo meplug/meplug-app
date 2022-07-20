@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import { LogBox } from "react-native";
 
-// LogBox.ignoreAllLogs();
+LogBox.ignoreAllLogs();
 
 export default function App() {
   const [loaded] = useFonts({

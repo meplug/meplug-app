@@ -13,7 +13,7 @@ export default function Routes() {
   
   const checkToken = async () => {
     const token = await AsyncStorage.getItem('token');
-    console.log('Token: ', token);
+    console.log(token)
     if (token) {
       setIsLoggedIn(true);
     } else {
