@@ -11,13 +11,14 @@ import { useDispatch } from "react-redux";
 import { authlogin } from "../redux/users/UserSlice";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export default function LoginScreen({navigation}) {
+export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
   const handleLogin = async () => {
-    dispatch(authlogin({email: email, password: password})).unwrap()
+    dispatch(authlogin({ email: email, password: password }))
+      .unwrap()
     // .then(async () => {
     //   try {
     //     const token = await AsyncStorage.getItem('token');
@@ -57,11 +58,12 @@ export default function LoginScreen({navigation}) {
       <TouchableOpacity>
         <Text
           style={{
-            color: '#0BA3FC',
-            fontFamily: 'Regular',
+            color: "#0BA3FC",
+            fontFamily: "Regular",
             fontSize: 15,
           }}
-          onPress={() => navigation.navigate('RegisterScreen')}>
+          onPress={() => navigation.navigate("RegisterScreen")}
+        >
           สมัครสมาชิก
         </Text>
       </TouchableOpacity>

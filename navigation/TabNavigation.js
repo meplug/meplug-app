@@ -6,7 +6,9 @@ import Homepage from "../pages/Homepage";
 import ScanScreen from "../pages/ScanScreen";
 
 const Tab = createBottomTabNavigator();
+
 export default function TabNavigation() {
+  
   return (
     <Tab.Navigator>
         <Tab.Screen name="Home" component={Homepage} />

@@ -3,8 +3,8 @@ import UserService from '../api/UserServices';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const authlogin = createAsyncThunk('users/login', async data => {
-  const res = await UserService.login(data).catch(err => {  console.log(err) });
-  console.log('res: ', res.data);
+  const res = await UserService.login(data);
+  console.log(res.status);
   const token = res.data.token;
   try {
     await AsyncStorage.setItem('token', token);
