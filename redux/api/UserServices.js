@@ -1,4 +1,4 @@
-import MocApi from './MocApi';
+import MocApi from './MeplugApi';
 
 const login = data => {
   return MocApi.post('/auths/login', data);
