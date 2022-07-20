@@ -1,9 +1,11 @@
-
 import { StyleSheet, Text, View } from "react-native";
 import { useFonts } from "expo-font";
 import Routes from "./navigation/Routes";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
+import { LogBox } from "react-native";
+
+// LogBox.ignoreAllLogs();
 
 export default function App() {
   const [loaded] = useFonts({
@@ -13,7 +15,11 @@ export default function App() {
   if (!loaded) {
     return null;
   }
-  return <Routes />;
+  return (
+    <Provider store={store}>
+      <Routes />
+    </Provider>
+  );
 }
 
 const styles = StyleSheet.create({
