@@ -48,9 +48,18 @@ export const fetchUserData = createAsyncThunk("user/getUser", async (id) => {
   return res.data.user;
 });
 
+const checkToken = async () => {
+  const token = await AsyncStorage.getItem("token");
+  if (token) {
+    return token;
+  } else {
+    return null;
+  }
+}
+
 const initialState = {
   users: {},
-  token: null,
+  token: checkToken(),
   loading: false,
 };
 

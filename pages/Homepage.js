@@ -16,8 +16,8 @@ export default function Homepage({ navigation }) {
       <TouchableOpacity onPress={() => navigation.navigate("Usage")}>
         <Text>Go To Usage</Text>
       </TouchableOpacity>
-      <TouchableOpacity onPress={removeToken}>
-        <Text>Remove Token</Text>
+      <TouchableOpacity onPress={removeToken} style={styles.button}>
+        <Text style={styles.buttonText}>Logout</Text>
       </TouchableOpacity>
     </View>
   );
@@ -29,5 +29,23 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+  },
+  button: {
+    marginVertical: 30,
+    backgroundColor: "red",
+    width: 125,
+    height: 40,
+    borderRadius: 20,
+    shadowColor: "#000000",
+    shadowOpacity: 5,
+    shadowRadius: 5,
+    elevation: 5,
+  },
+  buttonText: {
+    textAlign: "center",
+    color: "#FFFFFF",
+    fontFamily: "Regular",
+    fontSize: 18,
+    marginTop: 6,
   },
 });

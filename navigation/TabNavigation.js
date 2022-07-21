@@ -8,12 +8,23 @@ import ScanScreen from "../pages/ScanScreen";
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {
-  
   return (
     <Tab.Navigator>
-        <Tab.Screen name="Home" component={Homepage} />
-        <Tab.Screen name="Scan" component={ScanScreen} />
-        <Tab.Screen name="Usage" component={UsageScreen} />
+      <Tab.Screen
+        name="Home"
+        component={Homepage}
+        options={{ header: () => null }}
+      />
+      <Tab.Screen
+        name="Scan"
+        component={ScanScreen}
+        options={{ headerShown: false }}
+      />
+      <Tab.Screen
+        name="Usage"
+        component={UsageScreen}
+        options={{ header: () => null }}
+      />
     </Tab.Navigator>
   );
 }

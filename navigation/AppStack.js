@@ -1,6 +1,6 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Homepage from "../pages/Homepage";
 import UsageScreen from "../pages/UsageScreen";
@@ -9,14 +9,31 @@ import ScanScreen from "../pages/ScanScreen";
 
 const Stack = createNativeStackNavigator();
 
-export default function AppStack() { //Stack Screen Navigation only for registered user
+export default function AppStack() {
+  //Stack Screen Navigation only for registered user
 
   return (
     <Stack.Navigator initialRouteName="Tab">
-      <Stack.Screen name="Tab" component={TabNavigation}  options={{ headerShown: false }}/>
-      <Stack.Screen name="Homepage" component={Homepage} />
-      <Stack.Screen name="Usage" component={UsageScreen} />
-      <Stack.Screen name="ScanScreen" component={ScanScreen} />
+      <Stack.Screen
+        name="Tab"
+        component={TabNavigation}
+        options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="Homepage"
+        component={Homepage}
+        options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="Usage"
+        component={UsageScreen}
+        options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="ScanScreen"
+        component={ScanScreen}
+        options={{ header: () => null }}
+      />
     </Stack.Navigator>
   );
 }
