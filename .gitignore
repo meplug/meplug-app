@@ -13,5 +13,5 @@ web-build/
 # macOS
 .DS_Store
 
-redux/api/Meplug.js
+redux/api/MeplugApi.js
 
