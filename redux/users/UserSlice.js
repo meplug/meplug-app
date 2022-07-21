@@ -45,7 +45,8 @@ export const fetchUserData = createAsyncThunk('user/getUser', async id => {
 
 const initialState = {
   users: {},
-  token: '',
+  token: null,
+  loading: false
 };
 
 const UserSlice = createSlice({
@@ -54,8 +55,13 @@ const UserSlice = createSlice({
   extraReducers: {
     [authlogin.fulfilled]: (state, {payload}) => {
       console.log('Login Success!!');
+      console.log(payload.token);
+      return {...state, users: payload, loading: false, token: payload.token};
+    },
+    [authlogin.rejected]: (state, {payload}) => {
+      console.log('Login Failed!!');
       console.log(payload);
-      return {...state, users: payload};
+      return {...state, loading: false};
     },
     [authRegister.fulfilled]: (state, {payload}) => {
       console.log('Register Success!!');
