@@ -50,6 +50,7 @@ export const fetchUserData = createAsyncThunk("user/getUser", async (id) => {
 
 const checkToken = async () => {
   const token = await AsyncStorage.getItem("token");
+  console.log("Token: ", token);
   if (token) {
     return token;
   } else {
@@ -59,7 +60,7 @@ const checkToken = async () => {
 
 const initialState = {
   users: {},
-  token: checkToken(),
+  token: null,
   loading: false,
 };
 
