@@ -9,9 +9,10 @@ npm-debug.*
 *.mobileprovision
 *.orig.*
 web-build/
+redux/api/MeplugApi.js
 
 # macOS
 .DS_Store
 
-redux/api/MeplugApi.js
+
 
