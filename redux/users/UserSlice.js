@@ -55,7 +55,6 @@ const UserSlice = createSlice({
   extraReducers: {
     [authlogin.fulfilled]: (state, {payload}) => {
       console.log('Login Success!!');
-      console.log(payload.token);
       return {...state, users: payload, loading: false, token: payload.token};
     },
     [authlogin.rejected]: (state, {payload}) => {
@@ -73,7 +72,7 @@ const UserSlice = createSlice({
     },
     [authLogout.fulfilled]: state => {
       console.log('Logout Success!!');
-      return {...state, users: {token: ''}};
+      return {...state, users: {token: ''}, token: null, loading: false};
     },
     [fetchUserData.fulfilled]: (state, {payload}) => {
       console.log('Fetch Sucess!!');
@@ -83,4 +82,5 @@ const UserSlice = createSlice({
 });
 
 export const getUsers = state => state.users.users;
+export const getToken = state => state.users.token;
 export default UserSlice.reducer;

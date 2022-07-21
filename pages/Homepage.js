@@ -3,19 +3,17 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { authLogout } from "../redux/users/UserSlice";
 
-export default function Homepage({navigation}) {
+export default function Homepage({ navigation }) {
   const dispatch = useDispatch();
 
   const removeToken = () => {
-    dispatch(authLogout())
-      .unwrap()
-      .then(() => navigation.navigate("Login"));
+    dispatch(authLogout()).unwrap();
   };
   return (
     <View style={styles.container}>
       <Text style={{ fontFamily: "Regular" }}>Mansea</Text>
       <StatusBar style="auto" />
-      <TouchableOpacity onPress={()=>navigation.navigate("Usage")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Usage")}>
         <Text>Go To Usage</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={removeToken}>

@@ -9,7 +9,8 @@ import ScanScreen from "../pages/ScanScreen";
 
 const Stack = createNativeStackNavigator();
 
-export default function AppStack() {
+export default function AppStack() { //Stack Screen Navigation only for registered user
+
   return (
     <Stack.Navigator initialRouteName="Tab">
       <Stack.Screen name="Tab" component={TabNavigation}  options={{ headerShown: false }}/>
