@@ -117,17 +117,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  text: {
-    color: '#fff',
-    fontSize: 25,
-    paddingTop: 15,
-    fontFamily: 'Prompt-Regular',
-  },
-  subtext: {
-    color: '#047FC7',
-    paddingTop: 5,
-    marginBottom: 20,
-    fontFamily: 'Prompt-Regular',
-  },
 });
 export default RegisterScreen;
