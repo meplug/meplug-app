@@ -1,21 +1,26 @@
-import { View, Text } from 'react-native'
-import { useEffect, useState } from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import React from 'react'
-import Appstack from './AppStack';
-import AuthStack from './AuthStack';
-import { useSelector } from 'react-redux';
-import { getToken } from '../redux/users/UserSlice';
+import { View, Text } from "react-native";
+import { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import React from "react";
+import Appstack from "./AppStack";
+import AuthStack from "./AuthStack";
+import { useSelector, useDispatch } from "react-redux";
+import { checkToken, getToken } from "../redux/users/UserSlice";
 
 export default function Routes() {
+  const token = useSelector(getToken);
 
-  const token = useSelector(getToken)
-  
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkToken());
+    console.log(token)
+  }, []);
+
   return (
     <NavigationContainer>
-        {token ? (<Appstack/>) : (<AuthStack/>)}
+      {token ? <Appstack /> : <AuthStack />}
     </NavigationContainer>
-  )
+  );
 }
-

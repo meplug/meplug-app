@@ -48,15 +48,14 @@ export const fetchUserData = createAsyncThunk("user/getUser", async (id) => {
   return res.data.user;
 });
 
-const checkToken = async () => {
+export const checkToken = createAsyncThunk("user/checkToken", async () => {
   const token = await AsyncStorage.getItem("token");
-  console.log("Token: ", token);
   if (token) {
     return token;
   } else {
     return null;
   }
-}
+});
 
 const initialState = {
   users: {},
@@ -73,7 +72,7 @@ const UserSlice = createSlice({
       return { ...state, users: payload, loading: false, token: payload.token };
     },
     [authlogin.pending]: (state) => {
-      return {...state, loading: true};
+      return { ...state, loading: true };
     },
     [authlogin.rejected]: (state, { payload }) => {
       console.log("Login Failed!!");
@@ -84,7 +83,7 @@ const UserSlice = createSlice({
       return { ...state, loading: false };
     },
     [authRegister.pending]: (state) => {
-      return {...state, loading: true};
+      return { ...state, loading: true };
     },
     [authRegister.rejected]: (state, { error }) => {
       console.log("Register Rejected!!");
@@ -95,12 +94,20 @@ const UserSlice = createSlice({
       return { ...state, users: { token: "" }, token: null, loading: false };
     },
     [authLogout.pending]: (state) => {
-      return {...state, loading: true};
+      return { ...state, loading: true };
     },
     [fetchUserData.fulfilled]: (state, { payload }) => {
       console.log("Fetch Sucess!!");
       return { ...state, users: payload };
     },
+    [checkToken.fulfilled]: (state, { payload }) => {
+      console.log("Check Token Success!!");
+      return { ...state, token: payload };
+    },
+    [checkToken.pending]: (state) => {
+      return { ...state, loading: true };
+    }
+
   },
 });
 
