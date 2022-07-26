@@ -5,6 +5,7 @@ import UsageScreen from "../pages/UsageScreen";
 import Homepage from "../pages/Homepage";
 import ScanScreen from "../pages/ScanScreen";
 import { AntDesign } from '@expo/vector-icons'; 
+import ProfileScreen from "../pages/ProfileScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -24,6 +25,9 @@ export default function TabNavigation() {
         }
         else if (route.name === 'Usage') {
           iconName = focused ? 'dashboard' : 'dashboard';
+        }
+        else if (route.name === 'Profile') {
+          iconName = focused ? 'user' : 'user';
         }
 
         // You can return any component that you like here!
@@ -45,6 +49,11 @@ export default function TabNavigation() {
       <Tab.Screen
         name="Usage"
         component={UsageScreen}
+        options={{ header: () => null }}
+      />
+      <Tab.Screen
+        name="Profile"
+        component={ProfileScreen}
         options={{ header: () => null }}
       />
     </Tab.Navigator>
