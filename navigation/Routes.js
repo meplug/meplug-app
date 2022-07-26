@@ -11,18 +11,26 @@ import jwtDecode from "jwt-decode";
 
 export default function Routes() {
   const token = useSelector(getToken);
+  const loading = useSelector((state) => state.users.loading);
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(checkToken());
-    console.log(token)
+  const fetchData = async () => {
+    const token = await AsyncStorage.getItem("token");
+    if (token != null) {
+      var decoded = jwtDecode(token);
+      dispatch(fetchUserData({id: decoded._id}));
+    }
+  };
 
+  useEffect(() => {
+    dispatch(checkToken()).unwrap();
+    fetchData();
   }, []);
 
   return (
     <NavigationContainer>
-      {token ? <Appstack /> : <AuthStack />}
+      {token && loading ? <Appstack /> : <AuthStack />}
     </NavigationContainer>
   );
 }

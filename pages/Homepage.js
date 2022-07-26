@@ -3,31 +3,31 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
 import { authLogout, getUsers } from "../redux/users/UserSlice";
 import { useSelector } from "react-redux";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import jwtDecode from "jwt-decode";
-import { useEffect } from "react";
-
-
 
 export default function Homepage({ navigation }) {
   const dispatch = useDispatch();
-  // const user = useSelector(getUsers());
+
+  const user = useSelector(getUsers);
 
   const removeToken = () => {
     dispatch(authLogout()).unwrap();
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={{ fontFamily: "Regular" }}>Mansea</Text>
-      <StatusBar style="auto" />
-      <TouchableOpacity onPress={() => navigation.navigate("Usage")}>
-        <Text>Go To Usage</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={removeToken} style={styles.button}>
-        <Text style={styles.buttonText}>Logout</Text>
-      </TouchableOpacity>
-    </View>
+    <>
+      {user.length > 0 ? (
+        <View style={styles.container}>
+          <Text style={{ fontFamily: "Regular" }}>{user[0].email}</Text>
+          <StatusBar style="auto" />
+          <TouchableOpacity onPress={() => navigation.navigate("Usage")}>
+            <Text>Go To Usage</Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={removeToken} style={styles.button}>
+            <Text style={styles.buttonText}>Logout</Text>
+          </TouchableOpacity>
+        </View>
+      ) : null}
+    </>
   );
 }
 

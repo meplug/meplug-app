@@ -32,7 +32,7 @@ export const authRegister = createAsyncThunk(
   "user/register",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await UserService.register(data);
+      const res = await UserService.register({id: data});
       return res.data;
     } catch (error) {
       if (!error.response) {
@@ -43,14 +43,14 @@ export const authRegister = createAsyncThunk(
   }
 );
 
-export const fetchUserData = createAsyncThunk("user/getUser", async (id) => {
-  const res = await UserService.getUser(id);
+export const fetchUserData = createAsyncThunk("user/getUser", async (data) => {
+  const res = await UserService.getUser(data);
   return res.data.user;
 });
 
 export const checkToken = createAsyncThunk("user/checkToken", async () => {
   const token = await AsyncStorage.getItem("token");
-  if (token) {
+  if (token != null) {
     return token;
   } else {
     return null;
