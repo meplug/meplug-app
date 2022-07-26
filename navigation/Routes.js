@@ -6,7 +6,8 @@ import React from "react";
 import Appstack from "./AppStack";
 import AuthStack from "./AuthStack";
 import { useSelector, useDispatch } from "react-redux";
-import { checkToken, getToken } from "../redux/users/UserSlice";
+import { checkToken, fetchUserData, getToken } from "../redux/users/UserSlice";
+import jwtDecode from "jwt-decode";
 
 export default function Routes() {
   const token = useSelector(getToken);
@@ -16,6 +17,7 @@ export default function Routes() {
   useEffect(() => {
     dispatch(checkToken());
     console.log(token)
+
   }, []);
 
   return (

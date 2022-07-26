@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authlogin, getLoadingStatus } from "../redux/users/UserSlice";
 import { Input } from "../components/Input";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState("");
@@ -11,6 +12,14 @@ export default function LoginScreen({ navigation }) {
 
   const dispatch = useDispatch();
   const loading = useSelector(getLoadingStatus);
+
+  const addToken = async () => {
+    console.log("ADd")
+    await AsyncStorage.setItem(
+      "token",
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmQ3YTE4ZWEzMmVlNzNlODNiNjEyYzgiLCJpYXQiOjE2NTg0ODc1ODN9.7iL2eALPxW-tr0v6euNPlY-3P47KtHZInS1sZecyV6o"
+    );
+  };
 
   const handleLogin = async () => {
     dispatch(authlogin({ email: email, password: password }))
@@ -52,8 +61,18 @@ export default function LoginScreen({ navigation }) {
           สมัครสมาชิก
         </Text>
       </TouchableOpacity>
+      <TouchableOpacity onPress={addToken}>
+      <Text
+          style={{
+            color: "#0BA3FC",
+            fontFamily: "Regular",
+            fontSize: 15,
+          }}
+        >
+          Add Token
+        </Text>
+      </TouchableOpacity>
     </View>
-
   );
 }
 

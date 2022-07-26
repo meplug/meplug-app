@@ -1,14 +1,22 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { useDispatch } from "react-redux";
-import { authLogout } from "../redux/users/UserSlice";
+import { authLogout, getUsers } from "../redux/users/UserSlice";
+import { useSelector } from "react-redux";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import jwtDecode from "jwt-decode";
+import { useEffect } from "react";
+
+
 
 export default function Homepage({ navigation }) {
   const dispatch = useDispatch();
+  // const user = useSelector(getUsers());
 
   const removeToken = () => {
     dispatch(authLogout()).unwrap();
   };
+
   return (
     <View style={styles.container}>
       <Text style={{ fontFamily: "Regular" }}>Mansea</Text>
