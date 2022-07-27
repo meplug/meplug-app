@@ -3,9 +3,9 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import Homepage from "../pages/Homepage";
-import UsageScreen from "../pages/NotificationScreen";
 import TabNavigation from "./TabNavigation";
 import ScanScreen from "../pages/ScanScreen";
+import CarProfile from "../pages/CarProfile";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,13 +25,13 @@ export default function AppStack() {
         options={{ header: () => null }}
       />
       <Stack.Screen
-        name="Usage"
-        component={UsageScreen}
+        name="ScanScreen"
+        component={ScanScreen}
         options={{ header: () => null }}
       />
       <Stack.Screen
-        name="ScanScreen"
-        component={ScanScreen}
+        name="CarProfile"
+        component={CarProfile}
         options={{ header: () => null }}
       />
     </Stack.Navigator>

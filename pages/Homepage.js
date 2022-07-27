@@ -14,20 +14,18 @@ export default function Homepage({ navigation }) {
   };
 
   return (
-    <>
-      {user.length > 0 ? (
-        <View style={styles.container}>
-          <Text style={{ fontFamily: "Regular" }}>{user[0].email}</Text>
-          <StatusBar style="auto" />
-          <TouchableOpacity onPress={() => navigation.navigate("Usage")}>
-            <Text>Go To Usage</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={removeToken} style={styles.button}>
-            <Text style={styles.buttonText}>Logout</Text>
-          </TouchableOpacity>
-        </View>
-      ) : null}
-    </>
+    <View style={styles.container}>
+      <StatusBar style="auto" />
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("CarProfile")}
+      >
+        <Text style={styles.buttonText}>Car Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity onPress={removeToken} style={styles.button}>
+        <Text style={styles.buttonText}>Logout</Text>
+      </TouchableOpacity>
+    </View>
   );
 }
 
