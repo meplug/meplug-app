@@ -1,11 +1,12 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import UsageScreen from "../pages/UsageScreen";
 import Homepage from "../pages/Homepage";
 import ScanScreen from "../pages/ScanScreen";
 import { AntDesign } from '@expo/vector-icons'; 
 import ProfileScreen from "../pages/ProfileScreen";
+import NotificationScreen from "../pages/NotificationScreen";
+import WalletScreen from "../pages/WalletScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -20,10 +21,13 @@ export default function TabNavigation() {
           iconName = focused
             ? 'home'
             : 'home';
-        } else if (route.name === 'Scan') {
+        } else if (route.name === 'Wallet') {
+          iconName = focused ? 'wallet' : 'wallet';
+        }
+        else if (route.name === 'Scan') {
           iconName = focused ? 'scan1' : 'scan1';
         }
-        else if (route.name === 'Usage') {
+        else if (route.name === 'Notification') {
           iconName = focused ? 'dashboard' : 'dashboard';
         }
         else if (route.name === 'Profile') {
@@ -42,13 +46,18 @@ export default function TabNavigation() {
         options={{ header: () => null }}
       />
       <Tab.Screen
+        name="Wallet"
+        component={WalletScreen}
+        options={{ header: () => null }}
+      />
+      <Tab.Screen
         name="Scan"
         component={ScanScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Usage"
-        component={UsageScreen}
+        name="Notification"
+        component={NotificationScreen}
         options={{ header: () => null }}
       />
       <Tab.Screen

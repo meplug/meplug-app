@@ -24,9 +24,9 @@ export default function Routes() {
   };
 
   useEffect(() => {
-    dispatch(checkToken()).unwrap();
+    dispatch(checkToken());
     fetchData();
-  }, []);
+  }, [dispatch]);
 
   return (
     <NavigationContainer>

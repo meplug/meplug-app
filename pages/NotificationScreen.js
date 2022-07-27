@@ -1,10 +1,10 @@
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 
-export default function UsageScreen({navigation}) {
+export default function NotificationScreen({navigation}) {
   return (
     <View style={styles.container}>
-      <Text>UsageScreen</Text>
+      <Text>NotificationScreen</Text>
     </View>
   )
 }
