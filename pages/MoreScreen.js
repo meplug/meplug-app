@@ -3,16 +3,17 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { getUsers } from "../redux/users/UserSlice";
 
-export default function ProfileScreen() {
+export default function MoreScreen() {
   const user = useSelector(getUsers);
 
   return (
     <>
-      {user.length > 0 ? (
+
         <View style={styles.container}>
           <Text>{user[0].email}</Text>
+          <Text>Hi</Text>
         </View>
-      ) : null}
+
     </>
   );
 }

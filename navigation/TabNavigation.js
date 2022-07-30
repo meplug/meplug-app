@@ -4,7 +4,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Homepage from "../pages/Homepage";
 import ScanScreen from "../pages/ScanScreen";
 import { AntDesign } from '@expo/vector-icons'; 
-import ProfileScreen from "../pages/ProfileScreen";
+import { MaterialIcons } from '@expo/vector-icons'; 
+import MoreScreen from "../pages/MoreScreen";
 import NotificationScreen from "../pages/NotificationScreen";
 import WalletScreen from "../pages/WalletScreen";
 
@@ -28,16 +29,16 @@ export default function TabNavigation() {
           iconName = focused ? 'scan1' : 'scan1';
         }
         else if (route.name === 'Notification') {
-          iconName = focused ? 'dashboard' : 'dashboard';
+          iconName = focused ? 'notification' : 'notification';
         }
-        else if (route.name === 'Profile') {
-          iconName = focused ? 'user' : 'user';
+        else if (route.name === 'More') {
+          return <MaterialIcons name="more-horiz" size={24} color={color} />
         }
 
         // You can return any component that you like here!
         return <AntDesign name={iconName} size={size} color={color} />
       },
-      tabBarActiveTintColor: 'tomato',
+      tabBarActiveTintColor: '#0C40C8',
       tabBarInactiveTintColor: 'gray',
     })}>
       <Tab.Screen
@@ -61,8 +62,8 @@ export default function TabNavigation() {
         options={{ header: () => null }}
       />
       <Tab.Screen
-        name="Profile"
-        component={ProfileScreen}
+        name="More"
+        component={MoreScreen}
         options={{ header: () => null }}
       />
     </Tab.Navigator>

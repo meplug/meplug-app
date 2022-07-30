@@ -9,6 +9,7 @@ export const authlogin = createAsyncThunk(
       const res = await UserService.login(data);
       const token = res.data.token;
       await AsyncStorage.setItem("token", token);
+
       return res.data;
     } catch (error) {
       if (!error.response) {
@@ -69,7 +70,7 @@ const UserSlice = createSlice({
   extraReducers: {
     [authlogin.fulfilled]: (state, { payload }) => {
       console.log("Login Success!!");
-      return { ...state, users: payload, loading: false, token: payload.token };
+      return { ...state, users: payload.data, loading: false, token: payload.token };
     },
     [authlogin.pending]: (state) => {
       return { ...state, loading: true };

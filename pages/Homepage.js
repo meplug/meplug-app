@@ -8,10 +8,12 @@ export default function Homepage({ navigation }) {
   const dispatch = useDispatch();
 
   const user = useSelector(getUsers);
+  console.log("User", user);
 
   const removeToken = () => {
     dispatch(authLogout()).unwrap();
   };
+
 
   return (
     <View style={styles.container}>

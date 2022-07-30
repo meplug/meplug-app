@@ -30,7 +30,7 @@ export default function Routes() {
 
   return (
     <NavigationContainer>
-      {token && loading ? <Appstack /> : <AuthStack />}
+      {token ? <Appstack /> : <AuthStack />}
     </NavigationContainer>
   );
 }
