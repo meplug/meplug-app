@@ -8,6 +8,7 @@ import AuthStack from "./AuthStack";
 import { useSelector, useDispatch } from "react-redux";
 import { checkToken, fetchUserData, getToken } from "../redux/users/UserSlice";
 import jwtDecode from "jwt-decode";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function Routes() {
   const token = useSelector(getToken);
@@ -19,7 +20,7 @@ export default function Routes() {
     const token = await AsyncStorage.getItem("token");
     if (token != null) {
       var decoded = jwtDecode(token);
-      dispatch(fetchUserData({id: decoded._id}));
+      dispatch(fetchUserData({ id: decoded._id }));
     }
   };
 
@@ -29,8 +30,10 @@ export default function Routes() {
   }, [dispatch]);
 
   return (
-    <NavigationContainer>
-      {token ? <Appstack /> : <AuthStack />}
-    </NavigationContainer>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        {token ? <Appstack /> : <AuthStack />}
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }

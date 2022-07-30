@@ -2,7 +2,6 @@ import { View, Text } from "react-native";
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Homepage from "../pages/Homepage";
-import ScanScreen from "../pages/ScanScreen";
 import { AntDesign } from '@expo/vector-icons'; 
 import { MaterialIcons } from '@expo/vector-icons'; 
 import MoreScreen from "../pages/MoreScreen";
@@ -24,9 +23,6 @@ export default function TabNavigation() {
             : 'home';
         } else if (route.name === 'Wallet') {
           iconName = focused ? 'wallet' : 'wallet';
-        }
-        else if (route.name === 'Scan') {
-          iconName = focused ? 'scan1' : 'scan1';
         }
         else if (route.name === 'Notification') {
           iconName = focused ? 'notification' : 'notification';
@@ -50,11 +46,6 @@ export default function TabNavigation() {
         name="Wallet"
         component={WalletScreen}
         options={{ header: () => null }}
-      />
-      <Tab.Screen
-        name="Scan"
-        component={ScanScreen}
-        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Notification"

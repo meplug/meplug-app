@@ -2,10 +2,12 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { MaterialIcons } from "@expo/vector-icons";
+import { StatusBar } from "expo-status-bar";
 
 export default function CarProfile({navigation}) {
   return (
     <SafeAreaView>
+      <StatusBar/>
       <View style={styles.header}>
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity
