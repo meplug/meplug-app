@@ -1,9 +1,17 @@
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import React, { useState } from "react";
 import { AntDesign } from "@expo/vector-icons";
 
-export default function CarProfile({ navigation }) {
+export default function AddCarScreen({ navigation }) {
+  const [value, setValue] = useState("");
+
   return (
     <SafeAreaView style={{ paddingLeft: 10, paddingRight: 10 }}>
       <TouchableOpacity
@@ -13,15 +21,17 @@ export default function CarProfile({ navigation }) {
         <AntDesign name="arrowleft" size={25} color="#0C40C8" />
       </TouchableOpacity>
       <View style={styles.header}>
-        <Text style={styles.title}>รถของคุณ</Text>
+        <Text style={styles.title}>เพิ่มรถของคุณ</Text>
       </View>
-      <View>
-        <TouchableOpacity style={styles.card} onPress={() => navigation.navigate("AddCarScreen")}>
-          <View style={{ flexDirection: "row" }}>
-            <AntDesign name="plus" size={20} color="#0C40C8" />
-            <Text style={styles.cardText}>รถของคุณ</Text>
-          </View>
-        </TouchableOpacity>
+      <View style={styles.searchBox}>
+        <TextInput
+          placeholder="ค้นหารุ่นรถของคุณ"
+          placeholderTextColor="gray"
+          autoCapitalize="none"
+          style={{fontFamily: "Regular"}}
+          onChangeText={(text) => setValue(text)}
+        />
+        <AntDesign name="search1" size={22} color="#B3B3B3"/>
       </View>
     </SafeAreaView>
   );
@@ -59,5 +69,15 @@ const styles = StyleSheet.create({
     fontSize: 15,
     fontFamily: "Regular",
     paddingLeft: 5,
+  },
+  searchBox: { 
+    backgroundColor: "#fff",
+    width: "95%",
+    alignSelf: "center",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 10,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
 });

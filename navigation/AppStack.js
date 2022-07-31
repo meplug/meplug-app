@@ -7,6 +7,7 @@ import TabNavigation from "./TabNavigation";
 import ScanScreen from "../pages/ScanScreen";
 import CarProfile from "../pages/CarProfile";
 import TopupScreen from "../pages/TopupScreen";
+import AddCarScreen from "../pages/AddCarScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,11 @@ export default function AppStack() {
       <Stack.Screen
         name="TopupScreen"
         component={TopupScreen}
+        options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="AddCarScreen"
+        component={AddCarScreen}
         options={{ header: () => null }}
       />
     </Stack.Navigator>

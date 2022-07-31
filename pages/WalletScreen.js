@@ -4,8 +4,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { getUsers } from "../redux/users/UserSlice";
 
-
-
 export default function WalletScreen({ navigation }) {
   const user = useSelector(getUsers);
 
