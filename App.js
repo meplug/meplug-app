@@ -10,6 +10,7 @@ LogBox.ignoreAllLogs();
 export default function App() {
   const [loaded] = useFonts({
     Regular: require("./assets/fonts/Prompt-Regular.ttf"),
+    Bold: require("./assets/fonts/Prompt-Bold.ttf"),
   });
 
   if (!loaded) {
