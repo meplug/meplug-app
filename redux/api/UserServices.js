@@ -1,23 +1,23 @@
-import MocApi from './MeplugApi';
+import Meplug from './MeplugApi';
 
 const login = data => {
-  return MocApi.post('/auths/login', data);
+  return Meplug.post('/auths/login', data);
 };
 
 const register = data => {
-  return MocApi.post('/auths/register', data);
+  return Meplug.post('/auths/register', data);
 };
 
 const logout = data => {
-  return MocApi.post('/auths/logout');
+  return Meplug.post('/auths/logout');
 };
 
 const getUser = data => {
-  return MocApi.post(`/users/`, data);
+  return Meplug.post(`/users/`, data);
 };
 
 const topup = data => {
-  return MocApi.post(`/users/topup`, data);
+  return Meplug.post(`/users/topup`, data);
 };
 
 
