@@ -7,7 +7,6 @@ import { StatusBar } from "expo-status-bar";
 export default function CarProfile({navigation}) {
   return (
     <SafeAreaView>
-      <StatusBar/>
       <View style={styles.header}>
         <View style={{ flexDirection: "row" }}>
           <TouchableOpacity

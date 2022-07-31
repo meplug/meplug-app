@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import { getUsers } from "../redux/users/UserSlice";
+import { getLoadingStatus, getUsers } from "../redux/users/UserSlice";
 import { useSelector } from "react-redux";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -10,45 +10,51 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function Homepage({ navigation }) {
-
   const user = useSelector(getUsers);
+  const loading = useSelector(getLoadingStatus);
 
   return (
-    <View>
-      <StatusBar style="auto" />
-      <View style={styles.header}>
-        <Text style={styles.HeaderText}>ยินดีต้องรับสู่ meplug!</Text>
-        <Text style={styles.HeaderText}>คุณ {user[0].name}</Text>
-      </View>
-      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-        <TouchableOpacity style={styles.button}>
-          <Ionicons name="warning" size={40} color="#0C40C8" />
-          <Text style={styles.buttonText}>แจ้งปัญหา</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("CarProfile")}
-        >
-          <Ionicons name="car" size={40} color="#0C40C8" />
-          <Text style={styles.buttonText}>รถของคุณ</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <MaterialIcons name="history" size={40} color="#0C40C8" />
-          <Text style={styles.buttonText}>ประวัติการใช้งาน</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => navigation.navigate("ScanScreen")}
-        >
-          <MaterialCommunityIcons
-            name="qrcode-scan"
-            size={40}
-            color="#0C40C8"
-          />
-          <Text style={styles.buttonText}>สแกน</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <>
+      {user.length > 0 ? (
+        <View>
+          <StatusBar style="auto" />
+          <View style={styles.header}>
+            <Text style={styles.HeaderText}>ยินดีต้องรับสู่ meplug!</Text>
+            <Text style={styles.HeaderText}>คุณ {user[0].name}</Text>
+          </View>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-around" }}
+          >
+            <TouchableOpacity style={styles.button}>
+              <Ionicons name="warning" size={40} color="#0C40C8" />
+              <Text style={styles.buttonText}>แจ้งปัญหา</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("CarProfile")}
+            >
+              <Ionicons name="car" size={40} color="#0C40C8" />
+              <Text style={styles.buttonText}>รถของคุณ</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <MaterialIcons name="history" size={40} color="#0C40C8" />
+              <Text style={styles.buttonText}>ประวัติการใช้งาน</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => navigation.navigate("ScanScreen")}
+            >
+              <MaterialCommunityIcons
+                name="qrcode-scan"
+                size={40}
+                color="#0C40C8"
+              />
+              <Text style={styles.buttonText}>สแกน</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      ) : null}
+    </>
   );
 }
 

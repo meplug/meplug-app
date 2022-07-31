@@ -4,7 +4,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useSelector } from "react-redux";
 import { getUsers } from "../redux/users/UserSlice";
 
-export default function WalletScreen() {
+export default function WalletScreen({navigation}) {
 
   const user = useSelector(getUsers);
 
@@ -15,7 +15,7 @@ export default function WalletScreen() {
         <Text style={{color: "white", fontSize: 20, fontFamily: "Regular"}}>ME WALLET</Text>
         <Text style={{color: "white", fontSize: 15, fontFamily: "Regular"}}>฿{user[0].balance}</Text>
       </View>
-      <TouchableOpacity style={styles.topupButton}>
+      <TouchableOpacity style={styles.topupButton} onPress={() => navigation.navigate("TopupScreen")}>
         <Text style={{color: "#0C40C8", fontSize: 15, fontFamily: "Regular"}}>+ เติมเงิน</Text>
       </TouchableOpacity>
     </SafeAreaView>

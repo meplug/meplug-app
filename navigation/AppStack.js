@@ -6,6 +6,7 @@ import Homepage from "../pages/Homepage";
 import TabNavigation from "./TabNavigation";
 import ScanScreen from "../pages/ScanScreen";
 import CarProfile from "../pages/CarProfile";
+import TopupScreen from "../pages/TopupScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,6 +33,11 @@ export default function AppStack() {
       <Stack.Screen
         name="CarProfile"
         component={CarProfile}
+        options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="TopupScreen"
+        component={TopupScreen}
         options={{ header: () => null }}
       />
     </Stack.Navigator>
