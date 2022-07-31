@@ -2,10 +2,26 @@ import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getToken, topupUser } from "../redux/users/UserSlice";
+import { fetchUserData } from "../redux/users/UserSlice";
+import jwtDecode from "jwt-decode";
 
 export default function TopupScreen({ navigation }) {
-    const [amount, setAmount] = useState(0);
+  const [amount, setAmount] = useState(0);
+
+  const token = useSelector(getToken);
+  const dispatch = useDispatch();
+
+  const handleTopup = () => {
+    dispatch(topupUser({ id: jwtDecode(token)._id, balance: amount })).then(
+      () => {
+        dispatch(fetchUserData({ id: jwtDecode(token)._id }));
+        navigation.navigate("Wallet");
+      }
+    );
+  };
 
   return (
     <SafeAreaView>
@@ -18,42 +34,31 @@ export default function TopupScreen({ navigation }) {
           กรุณาเลือกจำนวนเงินที่ต้องการที่จะเติม
         </Text>
         <View style={{ flexDirection: "row" }}>
-          <TouchableOpacity style={styles.topupButton} onPress={() => setAmount(50.00)}>
-            <Text
-              style={styles.topupText}
-            >
-              ฿50.00
-            </Text>
+          <TouchableOpacity
+            style={styles.topupButton}
+            onPress={() => setAmount(50.0)}
+          >
+            <Text style={styles.topupText}>฿50.00</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.topupButton} onPress={() => setAmount(100.00)}>
-            <Text
-              style={styles.topupText}
-            >
-              ฿100.00
-            </Text>
+          <TouchableOpacity
+            style={styles.topupButton}
+            onPress={() => setAmount(100.0)}
+          >
+            <Text style={styles.topupText}>฿100.00</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.topupButton} onPress={() => setAmount(200.00)}>
-            <Text
-              style={styles.topupText}
-            >
-              ฿200.00
-            </Text>
+          <TouchableOpacity
+            style={styles.topupButton}
+            onPress={() => setAmount(200.0)}
+          >
+            <Text style={styles.topupText}>฿200.00</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.topupButton}>
-            <Text
-              style={styles.topupText}
-            >
-              เลือกจำนวนเงินเอง
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.Button}>
-            <Text
-              style={styles.buttonText}
-            >
-              ยืนยัน
-            </Text>
-          </TouchableOpacity>
+          <Text style={styles.topupText}>เลือกจำนวนเงินเอง</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.Button} onPress={handleTopup}>
+          <Text style={styles.buttonText}>ยืนยัน</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

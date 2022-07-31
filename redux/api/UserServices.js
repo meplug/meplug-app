@@ -16,6 +16,10 @@ const getUser = data => {
   return MocApi.post(`/users/`, data);
 };
 
+const topup = data => {
+  return MocApi.post(`/users/topup`, data);
+};
+
 
 
 const UserService = {
@@ -23,6 +27,7 @@ const UserService = {
   getUser,
   register,
   logout,
+  topup
   
 };
 

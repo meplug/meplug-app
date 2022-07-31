@@ -33,7 +33,7 @@ export const authRegister = createAsyncThunk(
   "user/register",
   async (data, { rejectWithValue }) => {
     try {
-      const res = await UserService.register({id: data});
+      const res = await UserService.register(data);
       return res.data;
     } catch (error) {
       if (!error.response) {
@@ -58,6 +58,11 @@ export const checkToken = createAsyncThunk("user/checkToken", async () => {
   }
 });
 
+export const topupUser = createAsyncThunk("user/topup", async (data) => {
+  const res = await UserService.topup(data);
+  return res.data;
+});
+
 const initialState = {
   users: {},
   token: null,
@@ -70,7 +75,12 @@ const UserSlice = createSlice({
   extraReducers: {
     [authlogin.fulfilled]: (state, { payload }) => {
       console.log("Login Success!!");
-      return { ...state, users: payload.data, loading: false, token: payload.token };
+      return {
+        ...state,
+        users: payload.data,
+        loading: false,
+        token: payload.token,
+      };
     },
     [authlogin.pending]: (state) => {
       return { ...state, loading: true };
@@ -103,12 +113,11 @@ const UserSlice = createSlice({
     },
     [checkToken.fulfilled]: (state, { payload }) => {
       console.log("Check Token Success!!");
-      return { ...state, token: payload };
+      return { ...state, token: payload, loading: false };
     },
     [checkToken.pending]: (state) => {
       return { ...state, loading: true };
-    }
-
+    },
   },
 });
 
