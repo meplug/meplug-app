@@ -1,19 +1,24 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet,TouchableOpacity } from "react-native";
 import React from "react";
-import { useSelector } from "react-redux";
-import { getUsers } from "../redux/users/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { authLogout, getUsers } from "../redux/users/UserSlice";
 
 export default function MoreScreen() {
   const user = useSelector(getUsers);
 
+  const dispatch = useDispatch();
+
+  const removeToken = () => {
+    dispatch(authLogout()).unwrap();
+  };
   return (
     <>
-
-        <View style={styles.container}>
-          <Text>{user[0].email}</Text>
-          <Text>Hi</Text>
-        </View>
-
+      <View style={styles.container}>
+        <Text>Hi</Text>
+        <TouchableOpacity onPress={removeToken}>
+          <Text style={{color: 'red'}}>Logout</Text>
+        </TouchableOpacity>
+      </View>
     </>
   );
 }

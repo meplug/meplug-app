@@ -21,7 +21,7 @@ export default function Homepage({ navigation }) {
 
   return (
     <SafeAreaView>
-      <StatusBar style="light" backgroundColor="#0C40C8" />
+      <StatusBar style="auto" backgroundColor="#0C40C8" />
       <View style={styles.header}>
         <Text style={styles.HeaderText}>ยินดีต้องรับสู่ meplug!</Text>
         <Text style={styles.HeaderText}>คุณ {user[0].name}</Text>
